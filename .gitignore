@@ -2,3 +2,6 @@
 #NPM MODULES
 */node_modules
 
+
+#FILES
+secret.js   

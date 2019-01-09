@@ -1,1 +1,6 @@
+#FOLDERS
 node_modules
+
+
+#FILES
+secret.js 
