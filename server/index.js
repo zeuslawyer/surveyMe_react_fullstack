@@ -11,10 +11,13 @@ passport.use(
     {
       clientID: CONFIG.googleClientID,
       clientSecret: CONFIG.googleClientSecret,
-      callbackURL: "/auth/google/callback"
+      callbackURL: "/auth/google/callback" //this must match with the google console setup for oauth URL redirect
     },
-    accessToken => {
-      console.log(accessToken);
+    (accessToken, refreshToken, profile, done) => {
+      console.log('accessToken : ', accessToken);
+      console.log('refreshToken : ', refreshToken);
+      console.log('profile : ', profile);
+      console.log('done : ', done);
     }
   )
 );
@@ -25,6 +28,8 @@ app.get(
     scope: ["profile", "email"]
   })
 );
+
+app.get("/auth/google/callback", passport.authenticate("google"));
 
 app.get("/", (req, res) => {
   console.log("\nroot endpoint hit...\n");
