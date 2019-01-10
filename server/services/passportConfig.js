@@ -42,12 +42,17 @@ function successCallback(accessToken, refreshToken, profile, done) {
         })
           .save()
           .then(user => {
-            console.log("New user. Saved to DB.... at... ", __dirname);
+            console.log("New user. Saved to DB.... at... ", __filename);
             done(null, user);
           });
       } else {
         //if not null i.e. user already exists in db...
-        console.log("User already exists: ", profile.id, " at... ", __dirname);
+        console.log(
+          "User already exists. GoogleID: ",
+          profile.id,
+          " at... ",
+          __filename
+        );
         done(null, existingUser);
       }
     })
@@ -64,5 +69,5 @@ function successCallback(accessToken, refreshToken, profile, done) {
   // console.log("refreshToken : ", refreshToken);
   // console.log("Google profile ID: ", profile.id);
   // // console.log("done : ", done);
-  // console.log("\nLOG statements are AT : ", __dirname);
+  // console.log("\nLOG statements are AT : ", __filename);
 }
