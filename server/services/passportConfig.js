@@ -1,6 +1,6 @@
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const CONFIG = require("../secret.js");
+const CONFIG = require("../config/secrets.js");
 const mongoose = require("mongoose");
 
 //retrieve the User Class/ Model from mongoose, so the GoogleStrategy can read/write to the User collection
@@ -22,7 +22,8 @@ passport.use(
     {
       clientID: CONFIG.googleClientID,
       clientSecret: CONFIG.googleClientSecret,
-      callbackURL: "/auth/google/callback" //this must match with the google console setup for oauth URL redirect
+      callbackURL: "/auth/google/callback", 
+      proxy: true 
     },
     successCallback
   )
@@ -60,7 +61,7 @@ function successCallback(accessToken, refreshToken, profile, done) {
       console.log(
         "promise-related error when checking if user exists" +
           " ...at.... " +
-          __dirname
+          filename
       );
       done(err, null);
     });

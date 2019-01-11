@@ -1,5 +1,5 @@
 const express = require("express");
-const CONFIG = require("./secret.js");
+const CONFIG = require('./config/secrets.js');
 const mongoose = require("mongoose");
 const cookieSession = require("cookie-session");
 const passport = require("passport");

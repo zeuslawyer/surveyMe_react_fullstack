@@ -3,4 +3,4 @@ node_modules
 
 
 #FILES
-secret.js 
+dev-secrets.js
