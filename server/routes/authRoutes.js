@@ -17,6 +17,12 @@ module.exports = app => {
     res.send(req.user);
   });
 
+  //get current user
+  app.get('/api/current_user', (req, res) => {
+    console.log('API endpoit to get current user hit.... ', __filename)
+    res.json(req.user) //returns null if no user signed in
+  });
+
   //LOG OUT
   app.get('/api/logout', (req, res) => {
     req.logout();

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
+import Header from './Header'
 
 //DUMMY COMPONENTS
-const Header = () => <h2>Header</h2>;
 const Dashboard = () => <h2>Dashboard</h2>;
 const SurveyNew = () => <h2>SurveyNew</h2>;
 const Landing = props => (
@@ -15,9 +15,9 @@ const Landing = props => (
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="container">
         <BrowserRouter >
-          <div>
+          <div >
             <Header />
             <Route exact={true} path="/" component={Landing}  />
             <Route exact path="/surveys" component={Dashboard} />
