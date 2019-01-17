@@ -20,7 +20,7 @@ module.exports = app => {
   //get current user
   app.get('/api/current_user', (req, res) => {
     console.log('API endpoit to get current user hit.... ', __filename)
-    res.json(req.user) //returns null if no user signed in
+    res.send(req.user) //returns null if no user signed in
   });
 
   //LOG OUT

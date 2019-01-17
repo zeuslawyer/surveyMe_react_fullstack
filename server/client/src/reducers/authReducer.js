@@ -1,13 +1,9 @@
 const authReducer = (state = {}, action) => {
-  // switch (action.type) {
-  //   // case value:
-
-  //   //     break;
-
-  //   default:
-  //     return state;
-  // }
-  return state;
+  console.log('ACTION OBJECT: ', action);
+  switch (action.type) {
+    default:
+      return state;
+  }
 };
 
 export default authReducer;

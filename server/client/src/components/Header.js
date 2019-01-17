@@ -3,14 +3,14 @@ import logo from "../assets/matchfitLogo.png";
 
 class Header extends Component {
   logoStyle = {
-    width: "60px"
-    // height :
+    width: "68px",
+    // height: "68px"
   };
   render() {
     return (
       <nav>
         <div className="nav-wrapper">
-          <a left brand-logo href="/">
+          <a className="left brand-logo" href="/">
             <img src={logo} style={this.logoStyle} alt=""/>
           </a>
           <ul className="right ">
