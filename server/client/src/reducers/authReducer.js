@@ -1,19 +1,15 @@
 import { FETCH_USER } from "../actions/actions.types";
 
-// const initialAuthState = {
-//   userID: null,
-//   isLoggedIn: false
-// };
 const initialAuthState = null;
 
 const authReducer = (state = initialAuthState, action) => {
   switch (action.type) {
     case FETCH_USER:
-      // console.log("FETCH_USER Action: ", action);
+      console.log("FETCH_USER Action: ", action);
       const newState = {
         ...state,
         isLoggedIn: !!action.payload, //if !loggedin, payload is empty string => falsey
-        userID: action.payload.id || null
+        userID: action.payload._id || null
       };
       return newState;
     default:

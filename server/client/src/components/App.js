@@ -2,17 +2,13 @@ import React, { Component } from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Header from "./Header";
+import Landing from './Landing'
 import { fetchUser } from "../actions/index.js";
 
 //DUMMY COMPONENTS
 const Dashboard = () => <h2>Dashboard</h2>;
 const SurveyNew = () => <h2>SurveyNew</h2>;
-const Landing = props => (
-  <div>
-    <h2>Landing</h2>
-    <p>Hello, World!</p>
-  </div>
-);
+
 
 class App extends Component {
   componentDidMount() {
