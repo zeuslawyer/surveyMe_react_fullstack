@@ -18,16 +18,15 @@ module.exports = app => {
   });
 
   //get current user
-  app.get('/api/current_user', (req, res) => {
-    console.log('API endpoit to get current user hit.... ', __filename)
+  app.get("/api/current_user", (req, res) => {
+    console.log("API endpoit to get current user hit.... ", __filename);
     res.send(req.user) //returns null if no user signed in
   });
 
   //LOG OUT
-  app.get('/api/logout', (req, res) => {
+  app.get("/api/logout", (req, res) => {
     req.logout();
-    console.log('USER LOGGED OUT... ', __filename);
-    res.send('You are now logged out.')
+    console.log("USER LOGGED OUT... ", __filename);
+    res.send("You are now logged out.");
   });
-
 };
