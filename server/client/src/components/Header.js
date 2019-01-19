@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import logo from "../assets/matchfitLogo.png";
 
 class Header extends Component {
   logoStyle = {
-    width: "68px"
+    width: "60px"
     // height: "68px"
   };
 
@@ -14,7 +15,7 @@ class Header extends Component {
         return "loading auth status";
 
       default:
-        console.log(this.props.auth);
+        // console.log(this.props.auth);
         let buttonText = this.props.auth.isLoggedIn
           ? "Logout"
           : "Login With Google";
@@ -31,12 +32,18 @@ class Header extends Component {
     return (
       <nav>
         <div className="nav-wrapper">
-          <a className="left brand-logo" href="/">
-            <img src={logo} style={this.logoStyle} alt=""/>
-          </a>
-          <ul className="right ">
-            {this.renderContent()}
-          </ul>
+          <div>
+            <Link
+              className="left brand-logo"
+              to={
+                this.props.auth && this.props.auth.isLoggedIn ? "/surveys" : "/"
+              }
+            >
+             SurveyMe!
+              {/* <img src={logo} style={this.logoStyle} alt="" /> */}
+            </Link>
+          </div>
+          <ul className="right ">{this.renderContent()}</ul>
         </div>
       </nav>
     );
