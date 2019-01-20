@@ -39,7 +39,7 @@ class Header extends Component {
                 this.props.auth && this.props.auth.isLoggedIn ? "/surveys" : "/"
               }
             >
-             SurveyMe!
+              SurveyMe!
               {/* <img src={logo} style={this.logoStyle} alt="" /> */}
             </Link>
           </div>
