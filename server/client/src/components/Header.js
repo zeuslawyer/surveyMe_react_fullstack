@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import Payments from "./Payments";
 import logo from "../assets/matchfitLogo.png";
 
 class Header extends Component {
@@ -20,11 +21,30 @@ class Header extends Component {
           ? "Logout"
           : "Login With Google";
         let href = this.props.auth.isLoggedIn ? "/api/logout" : "auth/google";
-        return (
-          <li>
-            <a href={href}>{buttonText}</a>
-          </li>
-        );
+
+        if (this.props.auth.isLoggedIn) {
+          return (
+            <ul className="right">
+              <li>
+                <a href={href}>{buttonText}</a>
+              </li>
+              <li>
+                <Payments />
+              </li>
+            </ul>
+          );
+        } else {
+          return (
+            <ul className="right">
+              <li>
+                <a href={href}>{buttonText}</a>
+              </li>
+            </ul>
+          );
+        }
+
+
+        
     }
   }
 
@@ -43,7 +63,7 @@ class Header extends Component {
               {/* <img src={logo} style={this.logoStyle} alt="" /> */}
             </Link>
           </div>
-          <ul className="right ">{this.renderContent()}</ul>
+          {this.renderContent()}
         </div>
       </nav>
     );
