@@ -23,28 +23,24 @@ class Header extends Component {
         let href = this.props.auth.isLoggedIn ? "/api/logout" : "auth/google";
 
         if (this.props.auth.isLoggedIn) {
-          return (
-            <ul className="right">
-              <li>
-                <a href={href}>{buttonText}</a>
-              </li>
-              <li>
-                <Payments />
-              </li>
-            </ul>
-          );
+          return [
+            <li key="1">
+              <Payments />
+            </li>,
+            <li key="2">
+              Credits: 0
+            </li>,
+            <li key="3">
+            <a href={href}>{buttonText}</a>
+          </li>
+          ];
         } else {
           return (
-            <ul className="right">
-              <li>
-                <a href={href}>{buttonText}</a>
-              </li>
-            </ul>
+            <li>
+              <a href={href}>{buttonText}</a>
+            </li>
           );
         }
-
-
-        
     }
   }
 
@@ -63,7 +59,7 @@ class Header extends Component {
               {/* <img src={logo} style={this.logoStyle} alt="" /> */}
             </Link>
           </div>
-          {this.renderContent()}
+          <ul className="right">{this.renderContent()}</ul>
         </div>
       </nav>
     );

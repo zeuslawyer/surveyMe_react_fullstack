@@ -29,6 +29,8 @@ module.exports = app => {
     res.send(req.user); //returns null if no user signed in
   });
 
+ 
+
   //LOG OUT
   app.get("/api/logout", (req, res) => {
     req.logout();

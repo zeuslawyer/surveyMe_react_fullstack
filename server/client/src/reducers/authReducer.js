@@ -5,7 +5,7 @@ const initialAuthState = null;
 const authReducer = (state = initialAuthState, action) => {
   switch (action.type) {
     case FETCH_USER:
-      // console.log("FETCH_USER Action: ", action);
+      console.log("FETCH_USER Action triggered. Payload: ", action.payload);
       const newState = {
         ...state,
         isLoggedIn: !!action.payload, //if !loggedin, payload is empty string => falsey

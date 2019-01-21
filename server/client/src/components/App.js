@@ -3,7 +3,8 @@ import { BrowserRouter, Route, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Header from "./Header";
 import Landing from './Landing'
-import { fetchUser } from "../actions/index.js";
+// import { fetchUser } from "../actions/index.js";
+import * as actions from "../actions/index.js";
 
 //DUMMY COMPONENTS
 const Dashboard = () => <h2>Dashboard</h2>;
@@ -33,5 +34,6 @@ class App extends Component {
 
 export default connect(
   null,
-  { fetchUser }
+  // { fetchUser }
+  actions
 )(App);

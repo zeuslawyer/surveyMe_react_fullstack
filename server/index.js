@@ -27,6 +27,7 @@ app.use(passport.session());
 //Mount the routes    - by loading the exported routing middleware functions AND immediately invoking them
 require("./routes/index.js")(app);
 require("./routes/authRoutes.js")(app);
+require('./routes/billingRoutes.js')(app)
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}!`);
