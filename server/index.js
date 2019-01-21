@@ -3,6 +3,7 @@ const CONFIG = require('./config/secrets.js');
 const mongoose = require("mongoose");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
+const bodyParser = require('body-parser')
 
 //WIRE UP MONGOOSE
 require("./models/User.js");
@@ -16,13 +17,15 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // configure express app to use cookies with passport..
-cookieConfig = {
+cookieSessionConfig = {
   maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days in ms
   keys: [CONFIG.cookieKey]
 };
-app.use(cookieSession(cookieConfig));
+app.use(bodyParser.json());
+app.use(cookieSession(cookieSessionConfig));
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 //Mount the routes    - by loading the exported routing middleware functions AND immediately invoking them
 require("./routes/index.js")(app);
