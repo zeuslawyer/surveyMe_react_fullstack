@@ -5,11 +5,12 @@ const initialAuthState = null;
 const authReducer = (state = initialAuthState, action) => {
   switch (action.type) {
     case FETCH_USER:
-      console.log("FETCH_USER Action triggered. Payload: ", action.payload);
+      // console.log("auth reducer triggered. Payload: ", action.payload);
       const newState = {
         ...state,
         isLoggedIn: !!action.payload, //if !loggedin, payload is empty string => falsey
-        userID: action.payload._id || null
+        userID: action.payload._id || null,
+        credits: action.payload.credits || null
       };
       return newState;
     default:

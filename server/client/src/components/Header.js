@@ -17,27 +17,21 @@ class Header extends Component {
 
       default:
         // console.log(this.props.auth);
-        let buttonText = this.props.auth.isLoggedIn
-          ? "Logout"
-          : "Login With Google";
-        let href = this.props.auth.isLoggedIn ? "/api/logout" : "auth/google";
-
         if (this.props.auth.isLoggedIn) {
           return [
             <li key="1">
               <Payments />
             </li>,
-            <li key="2">
-              Credits: 0
-            </li>,
+            <li key="2" style={{margin: "0 10px"}}>Credits: {this.props.auth.credits || 0}</li>,
             <li key="3">
-            <a href={href}>{buttonText}</a>
-          </li>
+              <a href="/api/logout">Logout</a>
+            </li>
           ];
         } else {
+          // no user logged in
           return (
             <li>
-              <a href={href}>{buttonText}</a>
+              <a href="auth/google">Login With Google</a>
             </li>
           );
         }
