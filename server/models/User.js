@@ -5,7 +5,11 @@ const userSchemaConfig = { strict: false };
 
 const userSchema = new Schema(
   {
-    googleID: String
+    googleID: String,
+    credits: {
+      type: Number,
+      default: 0
+    }
   },
   userSchemaConfig
 );
