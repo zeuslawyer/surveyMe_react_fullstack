@@ -7,6 +7,7 @@ import { handleStripeToken } from '../actions/index' //get handlerStripeToken
 class Payments extends Component {
   render() {
     // debugger;
+    // console.log(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY)
     return (
       <StripeCheckout
         name="SurveyMe"
