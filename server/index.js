@@ -8,7 +8,8 @@ const path = require("path");
 
 //WIRE UP MONGOOSE
 require("./models/User.js");
-require('./models/Survey.js')
+require("./models/Survey.js");
+require("./models/SurveyRecipient.js");
 mongoose.connect(CONFIG.mongoURI);
 
 //load the passport config
