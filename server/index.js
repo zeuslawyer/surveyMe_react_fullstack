@@ -8,6 +8,7 @@ const path = require("path");
 
 //WIRE UP MONGOOSE
 require("./models/User.js");
+require('./models/Survey.js')
 mongoose.connect(CONFIG.mongoURI);
 
 //load the passport config
@@ -32,13 +33,12 @@ Mount the routes    - by loading the
 exported routing middleware functions 
 AND immediately invoking them....
 NOTE:  root '/' path not needed as 
-1) app.js has Router set up to send / routes to Landing component
+1) React front end's app.js has Router set up to send / routes to Landing component
 2)we've added catchall "*"
 route handler below to serve static file"
 */
 
 // require("./routes/index.js")(app);
-
 require("./routes/authRoutes.js")(app);
 require("./routes/billingRoutes.js")(app);
 
