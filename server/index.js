@@ -27,9 +27,9 @@ cookieSessionConfig = {
 app.use(bodyParser.json());
 app.use(cookieSession(cookieSessionConfig));
 app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.session());  
 
-/*
+/* ============= ROUTING ============================================
 Mount the routes    - by loading the 
 exported routing middleware functions 
 AND immediately invoking them....
@@ -42,6 +42,7 @@ route handler below to serve static file"
 // require("./routes/index.js")(app);
 require("./routes/authRoutes.js")(app);
 require("./routes/billingRoutes.js")(app);
+require("./routes/surveyRoutes.js")(app);
 
 /* CONFIGURE THE SERVER TO SERVE REACT APP ROUTING WHERE 
 SERVER ROUTES ARE NOT MATCHED  --  ONLY in PROD ,as in dev, there are two
