@@ -40,13 +40,13 @@ async function successCallback(accessToken, refreshToken, profile, done) {
       name: profile.displayName,
       email: profile.emails[0].value
     }).save();
-    console.log("New user. Saved to DB....at... ", __filename);
+    console.log("New user. Saved to DB....at... ", __dirname);
     return done(null, user);
   }
 
   //if  user exists in DB
   console.log("User already exists - not saving to DB. GoogleID: ", profile.id);
-  console.log(" at filename... ", __filename);
+  console.log(" at filename... ", __dirname);
   done(null, existingUser);
 }
 // .catch(err => {
@@ -62,4 +62,4 @@ async function successCallback(accessToken, refreshToken, profile, done) {
 // console.log("refreshToken : ", refreshToken);
 // console.log("Google profile ID: ", profile.id);
 // // console.log("done : ", done);
-// console.log("\nLOG statements are AT : ", __filename);
+// console.log("\nLOG statements are AT : ", __dirname);

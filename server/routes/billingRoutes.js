@@ -1,7 +1,6 @@
 const passport = require("passport");
 const { stripeSecretKey } = require("../config/secrets.js");
 const stripe = require("stripe")(stripeSecretKey);
-const mongoose = require("mongoose");
 const requireLogin = require("../middlewares/requireLogin.js");
 
 //req.user is the User model....
