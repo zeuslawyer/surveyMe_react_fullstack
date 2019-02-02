@@ -7,4 +7,5 @@
 #FILES
 dev-secrets.js
 *.env
+test.js
 # *.env.production

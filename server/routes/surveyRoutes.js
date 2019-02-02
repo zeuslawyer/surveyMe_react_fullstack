@@ -1,5 +1,7 @@
 const requireLogin = require("../middlewares/requireLogin.js");
 const checkCredits = require("../middlewares/checkCredits");
+const Mailer = require('../services/Mailer')
+const generateSurveyTemplate = require('../services/emailTemplates/surveyTemplate')
 
 //retrieve the Survey Class/ Model from mongoose, so we can read/write to DB
 const mongoose = require("mongoose");
@@ -26,9 +28,14 @@ module.exports = app => {
       _user: req.user.id,
       dateSent: Date.now()
     });
+
+    //compose mailer
+    const mailer = new Mailer(survey, generateSurveyTemplate(survey))
   });
 
   app.post("/api/surveys/email-webhook", (req, res) => {
-    //record feedback from respondent's action in the email
+    //record feedback from respondent's action i the email
   });
 };
+
+
