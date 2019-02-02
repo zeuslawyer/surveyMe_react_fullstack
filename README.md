@@ -1,6 +1,9 @@
 # GIT REPOS
 The 'master' git repo is initialised in the root of the project. However, the server is deployed to heroku and the heroku CD git repo is initalised in /server.  Thus, there are two git repos co-existing in this project.
 
+# RUNNING THE DEV ENVIRONMENT'S SERVER
+since this is a server side rendered react app, the root is really inside the /server directory.  Switch to /server and then do npm run dev to start up BOTH the server and the create react app dev server (client) using concurrently.
+
 # WEB APP DESCRIPTION: WHAT DOES IT DO?
 This web app implements a survey collection tool for the app's users.  A user can use the web app to send a survey to their target list of respondents, and collect their responses for analyses.  The app user can customise the email subject and reply-to fields to put in material that is relevant to their survey. 
 

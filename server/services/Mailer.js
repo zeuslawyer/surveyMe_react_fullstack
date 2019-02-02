@@ -1,5 +1,6 @@
 const helper = require("@sendgrid/helpers").classes;
-const helper2 = require("sendgrid");
+const sendgrid = require("sendgrid");
+const helper2 = sendgrid.mail
 const { sendGridKey } = require("../config/secrets");
 
 // designed to work for things other than just surveys
@@ -11,6 +12,7 @@ class Mailer extends helper.Mail {
 */
   constructor({ subject, recipients }, content) {
     super();
+    this.sgApi = sendgrid(sendGridKey)
 
     const htmlContent = new helper.Content("text/html", content);
 
@@ -46,8 +48,20 @@ class Mailer extends helper.Mail {
      
      this.recipients.forEach(recip => personalize.addTo(recip));
 
-     this.addPersonalization(personalize)
-      
+     this.addPersonalization(personalize)   
+  }
+
+  async send(){
+    //configure
+    const request = this.sgApi.emptyRequest({
+      method: 'POST',
+      path: 'v3/mail/send',
+      body: this.toJSON()
+    })
+    //send to sendgrid
+    const response = this.sgApi.API(request)
+    //return response as promise
+    return response;
   }
 }
 
