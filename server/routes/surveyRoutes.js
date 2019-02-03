@@ -1,7 +1,7 @@
 const requireLogin = require("../middlewares/requireLogin.js");
 const checkCredits = require("../middlewares/checkCredits");
-const Mailer = require('../services/Mailer')
-const generateSurveyTemplate = require('../services/emailTemplates/surveyTemplate')
+const Mailer = require("../services/Mailer");
+const generateSurveyTemplate = require("../services/emailTemplates/surveyTemplate");
 
 //retrieve the Survey Class/ Model from mongoose, so we can read/write to DB
 const mongoose = require("mongoose");
@@ -12,7 +12,7 @@ module.exports = app => {
     res.send("you GOT the /api/surveys route");
   });
 
-  app.post("/api/surveys", requireLogin, checkCredits, (req, res) => {
+  app.post("/api/surveys", (req, res) => {
     /*
       1) get 4 pieces of data: Title, subject, body, recipients
       2) construct Survey Mongoose object 
@@ -20,22 +20,24 @@ module.exports = app => {
       4) if survey succesfully emailed, then save Survey to db
     */
     const { title, body, subject, recipients } = req.body;
+    console.log("\n*** /api/surveys route hit!! ***\n");
     const survey = new Survey({
       title,
       subject,
       body,
       recipients: recipients.split(",").map(email => ({ email: email.trim() })),
-      _user: req.user.id,
+      // _user: req.user.id,
       dateSent: Date.now()
     });
-
+    // console.log("**SURVEY***   ", survey);
     //compose mailer
-    const mailer = new Mailer(survey, generateSurveyTemplate(survey))
+    const mailer = new Mailer(survey, generateSurveyTemplate(survey));
+
+    mailer.send().then(response => console.log("MAILER RESPONSE:  ", response));
+    res.send(survey);
   });
 
   app.post("/api/surveys/email-webhook", (req, res) => {
     //record feedback from respondent's action i the email
   });
 };
-
-

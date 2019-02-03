@@ -9,9 +9,8 @@ const surveySchema = new Schema({
   recipients: [SurveyRecipientSchema],
   yes: { type: Number, default: 0 },
   no: { type: Number, default: 0 },
-  _user: { type: Schema.Types.ObjectId, ref: "user" },
-  dateSent: Date,
-  dateofLastResponse: Date
+  // _user: { type: Schema.Types.ObjectId, ref: "user" },
+  // dateSent: Date,
 });
 
 mongoose.model("surveys", surveySchema);
