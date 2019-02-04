@@ -8,15 +8,16 @@ const mongoose = require("mongoose");
 const Survey = mongoose.model("surveys");
 
 module.exports = app => {
-  app.get("/api/surveys", requireLogin, checkCredits, (req, res) => {
-    res.send("you GOT the /api/surveys route");
+  app.get("/api/surveys/thanks", requireLogin, checkCredits, (req, res) => {
+    console.log(" *** THANKS endpoint hit.... ***");
+    res.send("Thanks for voting!");
   });
 
-  app.post("/api/surveys", (req, res) => {
+  app.post("/api/surveys", requireLogin, checkCredits, async (req, res) => {
     /*
       1) get 4 pieces of data: Title, subject, body, recipients
       2) construct Survey Mongoose object 
-      3) send email to list of recipients
+      3) send email to list of recipients using the Mailer class that extends sendgrid
       4) if survey succesfully emailed, then save Survey to db
     */
     const { title, body, subject, recipients } = req.body;
@@ -30,11 +31,24 @@ module.exports = app => {
       dateSent: Date.now()
     });
     // console.log("**SURVEY***   ", survey);
-    //compose mailer
+
+    //SAVE mailer
     const mailer = new Mailer(survey, generateSurveyTemplate(survey));
 
-    mailer.send().then(response => console.log("MAILER RESPONSE:  ", response));
-    res.send(survey);
+    // SEND mailer
+    try {
+      const response = await mailer.send();
+      // console.log("MAILER RESPONSE:  ", response)
+
+      // SAVE survey, and deduct user credit
+      await survey.save();
+      req.user.credits -= 1;
+      const updatedUser = await req.user.save();
+      // res.send(updatedUser)
+      res.redirect("/surveys");
+    } catch (err) {
+      res.status(422).send(err);
+    }
   });
 
   app.post("/api/surveys/email-webhook", (req, res) => {

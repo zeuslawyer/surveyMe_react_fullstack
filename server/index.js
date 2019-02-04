@@ -27,7 +27,7 @@ cookieSessionConfig = {
 app.use(bodyParser.json());
 app.use(cookieSession(cookieSessionConfig));
 app.use(passport.initialize());
-app.use(passport.session());  
+app.use(passport.session());
 
 /* ============= ROUTING ============================================
 Mount the routes    - by loading the 
