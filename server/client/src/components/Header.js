@@ -40,7 +40,7 @@ class Header extends Component {
 
   render() {
     return (
-      <nav>
+      <nav style={{"backgroundColor" : "#f50057"}}>
         <div className="nav-wrapper">
           <div>
             <Link
