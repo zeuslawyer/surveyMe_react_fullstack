@@ -1,12 +1,13 @@
-import React from 'react'
+import React from "react";
 
 function SurveyInput(props) {
-    // console.log('redux\'s props are: ', props)
+  // console.log('redux\'s helper functions passed as props  are: ', props.input)
   return (
     <div>
-      <input {...props.input}/>
+      <label>{props.label}</label>
+      <input {...props.input} placeholder={props.placeholder}/>
     </div>
-  )
+  );
 }
 
-export default SurveyInput
+export default SurveyInput;
