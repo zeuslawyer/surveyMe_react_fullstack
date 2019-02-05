@@ -13,7 +13,7 @@ function Dashboard() {
     position: "fixed"
   };
   return (
-    <div >
+    <div>
       This is the users survey dashboard accessed at route /surveys
       <div className="container">
         <Fab
