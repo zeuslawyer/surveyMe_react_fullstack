@@ -52,7 +52,6 @@ class SurveyForm extends Component {
             </Link>
             <button type="submit" className="teal btn-flat right white-text">
               NEXT
-              {/* <i className="materials-icon right">done</i> */}
             </button>
           </div>
         </form>
@@ -61,4 +60,21 @@ class SurveyForm extends Component {
   }
 }
 
-export default reduxForm({ form: "surveyForm" })(SurveyForm);
+/* 
+ * @params takes the form's values
+ * performs validation logic and then constructs an errors object with the incorrect form key + error message
+ * @returns errors object containing incorrect key + error message. Each property in errors object is 
+ * matched to the Field with the same name as the property, and passed to that Field in props.meta.error
+ */
+function validateForm(formValues) {
+  const errors = {}; 
+  if (!formValues.title) {
+    errors.title = "Please enter a valid Survey Title"
+  }
+  return errors;
+}
+
+export default reduxForm({
+  form: "surveyForm",
+  validate: validateForm
+})(SurveyForm);

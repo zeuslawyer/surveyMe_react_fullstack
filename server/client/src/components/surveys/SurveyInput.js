@@ -5,7 +5,13 @@ function SurveyInput(props) {
   return (
     <div>
       <label>{props.label}</label>
-      <input {...props.input} placeholder={props.placeholder}/>
+      <div style={{ color: "red", fontWeight: "bold" }}>
+        <small>
+          {/* in-line conditional - <if><boolean> && <return><something> */}
+          {props.meta.touched && props.meta.error}
+        </small>
+      </div>
+      <input {...props.input} placeholder={props.placeholder} />
     </div>
   );
 }
