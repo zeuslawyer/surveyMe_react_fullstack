@@ -14,21 +14,30 @@ const FIELD_OBJECTS = [
     label: "Survey Title",
     name: "title",
     type: "text",
-    component: SurveyInput
+    component: SurveyInput,
+    emptyFieldError: "Please provide a Survey Title"
   },
   {
     label: "Subject Line",
     name: "subject",
     type: "text",
-    component: SurveyInput
+    component: SurveyInput,
+    emptyFieldError: "Please provide a Subject Line"
   },
-  { label: "Email Body", name: "body", type: "text", component: SurveyInput },
+  {
+    label: "Email Body",
+    name: "body",
+    type: "text",
+    component: SurveyInput,
+    emptyFieldError: "Please provide the body of the covering email"
+  },
   {
     label: "Recipients",
     name: "recipients",
     type: "text",
     component: SurveyInput,
-    placeholder: "Separate emails with commas"
+    placeholder: "Separate emails with commas",
+    emptyFieldError: "Please provide recipient email IDs, separated by commas"
   }
 ];
 
@@ -60,17 +69,23 @@ class SurveyForm extends Component {
   }
 }
 
-/* 
+/*
  * @params takes the form's values
  * performs validation logic and then constructs an errors object with the incorrect form key + error message
- * @returns errors object containing incorrect key + error message. Each property in errors object is 
+ * @returns errors object containing incorrect key + error message. Each property in errors object is
  * matched to the Field with the same name as the property, and passed to that Field in props.meta.error
  */
 function validateForm(formValues) {
-  const errors = {}; 
+  const errors = {};
   if (!formValues.title) {
-    errors.title = "Please enter a valid Survey Title"
+    errors.title = "Please enter a valid Survey Title";
   }
+  FIELD_OBJECTS.forEach(field => {
+    //check for empty input
+    if (!formValues[field.name]) {
+      errors[field.name] = field.emptyFieldError;
+    }
+  });
   return errors;
 }
 
