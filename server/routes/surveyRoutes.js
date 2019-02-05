@@ -8,6 +8,7 @@ const mongoose = require("mongoose");
 const Survey = mongoose.model("surveys");
 
 module.exports = app => {
+
   app.get("/api/surveys/thanks", requireLogin, checkCredits, (req, res) => {
     console.log(" *** THANKS endpoint hit.... ***");
     res.send("Thanks for voting!");
