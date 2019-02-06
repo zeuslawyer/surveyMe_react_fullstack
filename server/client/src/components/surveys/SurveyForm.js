@@ -3,6 +3,7 @@ import { reduxForm, Field } from "redux-form";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import SurveyInput from "./SurveyInput";
+import getInvalidEmails from "../../utils/validateEmails";
 
 /*
  * prepare attributes for each field as an object of attributes to be mapped over at runtime...
@@ -52,8 +53,6 @@ class SurveyForm extends Component {
     return (
       <div>
         <form onSubmit={this.props.handleSubmit(values => console.log(values))}>
-          {/* <Field type="text" name="surveyTitle" component="input" />
-           */}
           {this.renderFields()}
           <div>
             <Link to="/surveys">
@@ -77,15 +76,27 @@ class SurveyForm extends Component {
  */
 function validateForm(formValues) {
   const errors = {};
-  if (!formValues.title) {
-    errors.title = "Please enter a valid Survey Title";
-  }
+
+  //check each input field for invalid entries
   FIELD_OBJECTS.forEach(field => {
-    //check for empty input
     if (!formValues[field.name]) {
       errors[field.name] = field.emptyFieldError;
     }
   });
+
+  //check email input for invalid emails
+  let invalidEmails = getInvalidEmails(formValues.recipients || "");
+  invalidEmails.forEach(email => {
+    errors.recipients = `These emails are invalid: ${invalidEmails}`;
+  });
+
+  // regex to check if emails have more than 1 comma
+  let tooManyCommas = /,,/.test(formValues.recipients);
+  if (tooManyCommas) {
+    errors.recipients = `Too many commas`;
+  }
+  
+  //return errors object to redux form
   return errors;
 }
 
