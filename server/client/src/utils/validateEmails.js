@@ -27,11 +27,14 @@ const getInvalidEmails = stringOfEmails => {
   let invalidEmails = emailArray.filter(email => {
     // console.log('EMAIL BEING TESTED:  ', email);
 
+    console.log('EMAIL BEING EXAMINED: ', email, email.length);
+
     //to remove unecessary error for trailing commas, check that the email being filtered is not an emptry string
-    if (email.length > 0) return emailRegex.test(email) === false;
+    // if this condition is satisfied, the filter returns invalid emails- i.e those that FAIL the regex test
+    if (email.length >= 0 ) return emailRegex.test(email) === false;
   });
 
-  //   console.log(`invalid emails: ${invalidEmails}`);
+    // console.log(`invalid emails: ${invalidEmails}`);
   return invalidEmails;
 };
 

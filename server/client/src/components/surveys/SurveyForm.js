@@ -87,7 +87,12 @@ function validateForm(formValues) {
   //check email input for invalid emails
   let invalidEmails = getInvalidEmails(formValues.recipients || "");
   invalidEmails.forEach(email => {
-    errors.recipients = `These emails are invalid: ${invalidEmails}`;
+    if (email.length == 0) {
+      errors.recipients = `One or more of the emails has an error or an extra comma`;
+    } else if (invalidEmails.length > 0) {
+      errors.recipients = `These emails are invalid: ${invalidEmails}`;
+    }
+    
   });
 
   // regex to check if emails have more than 1 comma
@@ -95,7 +100,7 @@ function validateForm(formValues) {
   if (tooManyCommas) {
     errors.recipients = `Too many commas`;
   }
-  
+
   //return errors object to redux form
   return errors;
 }
