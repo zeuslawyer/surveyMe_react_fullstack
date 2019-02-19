@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 import { Link } from "react-router-dom";
 import getInvalidEmails from "../../utils/validateEmails";
-import {FIELD_OBJECTS} from './formFields'
+import { FIELD_OBJECTS } from "./formFields";
 
 /*
  * prepare attributes for each field as an object of attributes to be mapped over at runtime...
@@ -77,7 +77,7 @@ function validateForm(formValues) {
 }
 
 export default reduxForm({
-  form: "surveyForm",  //form name in redux store
+  form: "surveyForm", //form name in redux store
   validate: validateForm,
   destroyOnUnmount: false
 })(SurveyForm);
