@@ -52,7 +52,12 @@ class SurveyForm extends Component {
     console.log("FORM STATE: ", this.state);
     return (
       <div>
-        <form onSubmit={this.props.handleSubmit(values => console.log(values))}>
+        <form
+          onSubmit={this.props.handleSubmit(values => {
+            console.log(values);
+            this.props.onSurveySubmit();
+          })}
+        >
           {this.renderFields()}
           <div>
             <Link to="/surveys">
@@ -92,7 +97,6 @@ function validateForm(formValues) {
     } else if (invalidEmails.length > 0) {
       errors.recipients = `These emails are invalid: ${invalidEmails}`;
     }
-    
   });
 
   // regex to check if emails have more than 1 comma

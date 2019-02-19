@@ -21,20 +21,19 @@ const getInvalidEmails = stringOfEmails => {
   //source : emailregex.com
   //NOTE:  regex is NOT a string!
   const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  // const emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/; 
 
   let emailArray = cleanEmailString(stringOfEmails);
 
   let invalidEmails = emailArray.filter(email => {
-    // console.log('EMAIL BEING TESTED:  ', email);
-
-    console.log('EMAIL BEING EXAMINED: ', email, email.length);
+    // console.log('EMAIL BEING TESTED:  ', email, email.length);
 
     //to remove unecessary error for trailing commas, check that the email being filtered is not an emptry string
     // if this condition is satisfied, the filter returns invalid emails- i.e those that FAIL the regex test
-    if (email.length >= 0 ) return emailRegex.test(email) === false;
+    if (email.length >= 0) return emailRegex.test(email) === false;
   });
 
-    // console.log(`invalid emails: ${invalidEmails}`);
+  // console.log(`invalid emails: ${invalidEmails}`);
   return invalidEmails;
 };
 
