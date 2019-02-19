@@ -1,46 +1,13 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import SurveyInput from "./SurveyInput";
 import getInvalidEmails from "../../utils/validateEmails";
+import {FIELD_OBJECTS} from './formFields'
 
 /*
  * prepare attributes for each field as an object of attributes to be mapped over at runtime...
  * each Field takes a prop of 'component' which refers to the custom SurveyInput component that renders an input
  */
-
-const FIELD_OBJECTS = [
-  {
-    label: "Survey Title",
-    name: "title",
-    type: "text",
-    component: SurveyInput,
-    emptyFieldError: "Please provide a Survey Title"
-  },
-  {
-    label: "Subject Line",
-    name: "subject",
-    type: "text",
-    component: SurveyInput,
-    emptyFieldError: "Please provide a Subject Line"
-  },
-  {
-    label: "Email Body",
-    name: "body",
-    type: "text",
-    component: SurveyInput,
-    emptyFieldError: "Please provide the body of the covering email"
-  },
-  {
-    label: "Recipients",
-    name: "recipients",
-    type: "text",
-    component: SurveyInput,
-    placeholder: "Separate emails with commas",
-    emptyFieldError: "Please provide recipient email IDs, separated by commas"
-  }
-];
 
 class SurveyForm extends Component {
   renderFields() {
@@ -54,7 +21,7 @@ class SurveyForm extends Component {
       <div>
         <form
           onSubmit={this.props.handleSubmit(values => {
-            console.log(values);
+            // console.log(values);
             this.props.onSurveySubmit();
           })}
         >
@@ -110,6 +77,7 @@ function validateForm(formValues) {
 }
 
 export default reduxForm({
-  form: "surveyForm",
-  validate: validateForm
+  form: "surveyForm",  //form name in redux store
+  validate: validateForm,
+  destroyOnUnmount: false
 })(SurveyForm);
