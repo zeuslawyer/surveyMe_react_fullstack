@@ -1,7 +1,7 @@
 import axios from "axios";
 import { FETCH_USER } from "./actions.types";
 
-//USING PROMISES
+//USING PROMISES (.then() chains)
 export const fetchUser = () => {
   //redux-thunk requires that actions return functions that take the dispatch() function as an arg
   return function(dispatch) {
@@ -12,7 +12,7 @@ export const fetchUser = () => {
   };
 };
 
-//USING ASYNC AWAIT
+//USING ASYNC AWAIT SYNTAX
 export const handleStripeToken = token => {
   console.log("handle stripe token action triggered");
   return async function(dispatch) {
@@ -20,3 +20,11 @@ export const handleStripeToken = token => {
     dispatch({ type: FETCH_USER, payload: resp.data });
   };
 };
+
+export const sendSurvey = (formValues) => {
+  // console.log('SEND SURVEY ACTION TRIGGERED', formValues)
+  return {
+    type: "SEND_SURVEY",
+    payload: {formValues}
+  }
+}

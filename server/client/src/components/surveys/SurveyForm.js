@@ -16,7 +16,7 @@ class SurveyForm extends Component {
     });
   }
   render() {
-    console.log("FORM STATE: ", this.state);
+    // console.log("FORM STATE: ", this.state);
     return (
       <div>
         <form
@@ -59,7 +59,7 @@ function validateForm(formValues) {
   //check email input for invalid emails
   let invalidEmails = getInvalidEmails(formValues.recipients || "");
   invalidEmails.forEach(email => {
-    if (email.length == 0) {
+    if (email.length === 0) {
       errors.recipients = `One or more of the emails has an error or an extra comma`;
     } else if (invalidEmails.length > 0) {
       errors.recipients = `These emails are invalid: ${invalidEmails}`;
