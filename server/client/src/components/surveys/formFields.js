@@ -23,7 +23,7 @@ export const FIELD_OBJECTS = [
       emptyFieldError: "Please provide the body of the covering email"
     },
     {
-      label: "Recipients",
+      label: "Recipient List",
       name: "recipients",
       type: "text",
       component: SurveyInput,

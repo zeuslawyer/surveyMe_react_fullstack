@@ -21,10 +21,14 @@ export const handleStripeToken = token => {
   };
 };
 
-export const sendSurvey = (formValues) => {
-  // console.log('SEND SURVEY ACTION TRIGGERED', formValues)
-  return {
-    type: "SEND_SURVEY",
-    payload: {formValues}
-  }
-}
+// REDUX THUNK -> action returns a function (async)
+//redux-thunk requires that actions return functions that take the dispatch() function as an arg
+export const sendSurvey = formValues => {
+  // console.log('received form values: ', formValues);
+  //redux-thunk requires that actions return functions that take the dispatch() function as an arg
+  return function(dispatch) {
+    axios
+      .post("/api/surveys", formValues)//.then(data=>console.log(dispatch) )
+      .then(resp => dispatch({ type: FETCH_USER, payload: resp.data }));
+  };
+};

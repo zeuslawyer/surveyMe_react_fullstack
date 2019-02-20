@@ -1,18 +1,24 @@
 import React from "react";
 import { connect } from "react-redux";
 import { FIELD_OBJECTS } from "./formFields";
-import {sendSurvey} from '../../actions/index'
+import * as actions from "../../actions/index";
 
-function SurveyFormReview({ onCancelPressed, formValues }) {
+function SurveyFormReview({ onCancelPressed, formValues, sendSurvey }) {
   return (
     <div>
       <h5> PLEASE CONFIRM YOUR ENTRIES</h5>
       <div>{renderReviewFields(formValues)}</div>
-      <button className="yellow darken-3 btn-flat white-text" onClick={onCancelPressed}>
+      <button
+        className="yellow darken-3 btn-flat white-text"
+        onClick={onCancelPressed}
+      >
         BACK
       </button>
-      <button className="teal btn-flat right white-text" onClick={()=>sendSurvey(formValues)}>
-        SEND SURVEY 
+      <button
+        className="teal btn-flat right white-text"
+        onClick={() => sendSurvey(formValues)}
+      >
+        SEND SURVEY
       </button>
     </div>
   );
@@ -38,5 +44,5 @@ function renderReviewFields(formValues) {
 }
 export default connect(
   mapStateToProps,
-  {sendSurvey}
+  actions
 )(SurveyFormReview);

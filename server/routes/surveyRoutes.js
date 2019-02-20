@@ -8,7 +8,6 @@ const mongoose = require("mongoose");
 const Survey = mongoose.model("surveys");
 
 module.exports = app => {
-
   app.get("/api/surveys/thanks", requireLogin, checkCredits, (req, res) => {
     console.log(" *** THANKS endpoint hit.... ***");
     res.send("Thanks for voting!");
@@ -31,7 +30,7 @@ module.exports = app => {
       // _user: req.user.id,
       dateSent: Date.now()
     });
-    // console.log("**SURVEY***   ", survey);
+    // console.log("**SURVEY*** Endpoint Hit   ", survey);
 
     //SAVE mailer
     const mailer = new Mailer(survey, generateSurveyTemplate(survey));
@@ -45,9 +44,9 @@ module.exports = app => {
       await survey.save();
       req.user.credits -= 1;
       const updatedUser = await req.user.save();
-      // res.send(updatedUser)
-      res.redirect("/surveys");
-    } catch (err) {
+      res.send(updatedUser) 
+      // res.redirect("/surveys");
+    } catch (err) { 
       res.status(422).send(err);
     }
   });
