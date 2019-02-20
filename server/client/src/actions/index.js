@@ -14,7 +14,7 @@ export const fetchUser = () => {
 
 //USING ASYNC AWAIT SYNTAX
 export const handleStripeToken = token => {
-  console.log("handle stripe token action triggered");
+  // console.log("handle stripe token action triggered");
   return async function(dispatch) {
     let resp = await axios.post("/api/stripe", token);
     dispatch({ type: FETCH_USER, payload: resp.data });
@@ -23,12 +23,13 @@ export const handleStripeToken = token => {
 
 // REDUX THUNK -> action returns a function (async)
 //redux-thunk requires that actions return functions that take the dispatch() function as an arg
-export const sendSurvey = formValues => {
+//passing in the HISTORY object (obtained by using withRouter() makes navigation from this action possible)
+export const sendSurvey = (formValues, history) => {
   // console.log('received form values: ', formValues);
   //redux-thunk requires that actions return functions that take the dispatch() function as an arg
-  return function(dispatch) {
-    axios
-      .post("/api/surveys", formValues)//.then(data=>console.log(dispatch) )
-      .then(resp => dispatch({ type: FETCH_USER, payload: resp.data }));
+  return async function(dispatch) {
+    const resp = await axios.post("/api/surveys", formValues)//.then(data=>console.log(dispatch) )
+    history.push('/surveys')
+    dispatch({ type: FETCH_USER, payload: resp.data }); 
   };
 };
