@@ -11,7 +11,7 @@ function SurveyFormReview({ onCancelPressed, formValues }) {
       <button className="yellow darken-3 btn-flat white-text" onClick={onCancelPressed}>
         BACK
       </button>
-      <button className="green btn-flat right white-text" onClick={()=>sendSurvey(formValues)}>
+      <button className="teal btn-flat right white-text" onClick={()=>sendSurvey(formValues)}>
         SEND SURVEY 
       </button>
     </div>

@@ -75,7 +75,7 @@ function validateForm(formValues) {
   //return errors object to redux form
   return errors;
 }
-
+ // use reduxForm() helper to configure the form object and invoke immediately with Form Component
 export default reduxForm({
   form: "surveyForm", //form name in redux store
   validate: validateForm,

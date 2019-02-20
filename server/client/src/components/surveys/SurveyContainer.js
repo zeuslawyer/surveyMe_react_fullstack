@@ -1,32 +1,42 @@
 import React, { Component } from "react";
 import SurveyForm from "./SurveyForm";
-import SurveyFormReview from './SurveyFormReview'
+import { reduxForm } from "redux-form";
+import SurveyFormReview from "./SurveyFormReview";
 
 class SurveyContainer extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-       showFormReviewComponent: false
-    }
+      showFormReviewComponent: false
+    };
   }
 
   renderContent = () => {
     if (this.state.showFormReviewComponent) {
-      return <SurveyFormReview onCancelPressed={()=>this.setState({showFormReviewComponent:false})}/>
+      return (
+        <SurveyFormReview
+          onCancelPressed={() =>
+            this.setState({ showFormReviewComponent: false })
+          }
+        />
+      );
     }
-  
-    //else  
-    return <SurveyForm onSurveySubmit={()=>this.setState({showFormReviewComponent:true})}/>
-  }
 
+    //else
+    return (
+      <SurveyForm
+        onSurveySubmit={() => this.setState({ showFormReviewComponent: true })}
+      />
+    );
+  };
 
   render() {
-    return (
-      <div>
-        {this.renderContent()}
-      </div>
-    );
+    return <div>{this.renderContent()}</div>;
   }
 }
 
-export default SurveyContainer;
+export default reduxForm({
+  form: "surveyForm"
+})(SurveyContainer);
+
+// export default SurveyContainer

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import Header from "./Header";
 import Landing from "./Landing";
@@ -21,7 +21,7 @@ class App extends Component {
           <Header />
           <Route exact={true} path="/" component={Landing} />
           <Route exact path="/surveys" component={Dashboard} />
-          <Route path="/surveys/new" component={SurveyContainer} />
+          <Route path="/surveys/new" component={withRouter(SurveyContainer)} />
         </div>
       </BrowserRouter>
     );
